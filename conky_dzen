@@ -1,0 +1,22 @@
+conky.config = {
+	background = false,
+	out_to_console = true,
+	out_to_x = false,
+	update_interval = 1,
+	total_run_times = 0,
+	use_spacer = 'none',
+
+
+};
+
+conky.text = [=[
+^fg(\#FFFFFF) ^i($HOME/.xmonad/.icons/temp.xbm)^fg() ${exec python3  $HOME/.xmonad/scripts/weather.py}  \
+^fg(\#FFFFFF) ^i($HOME/.xmonad/.icons/net_up_01.xbm)^fg()  ${upspeedf wlo1}  \
+^fg(\#FFFFFF) ^i($HOME/.xmonad/.icons/net_down_01.xbm)^fg()  ${downspeedf wlo1}  \
+^fg(\#FFFFFF) ^i($HOME/.xmonad/.icons/mem.xbm)^fg()  ${exec awk '/MemTotal/ {t=$2} /MemFree/ {f=$2} /^Cached/ {c=$2} END {print t-f-c " " t;}' /proc/meminfo  | gdbar -h 7 -w 60 -fg  '#FFFFFF' -bg  '#515151' -ss 1 -sw 3  -nonl -s o -max 101 }  \
+^fg(\#FFFFFF) ^i($HOME/.xmonad/.icons/cpu.xbm)^fg()  ${exec ps -eo pcpu | awk 'BEGIN {sum=0.0f} {sum+=$1} END {print sum}' | gdbar -h 7 -w 60 -fg  '#FFFFFF' -bg  '#515151' -ss 1 -sw 3  -nonl -s o -max}  \
+^ca(1, $HOME/.xmonad/scripts/date.sh)^fg(\#ffffff)^i($HOME/.xmonad/.icons/clock1.xbm)^fg() ^ca() ${exec date | awk 'NR==1{print $1" "$4}'} \
+^fg(\#A527C5)^i($HOME/.xmonad/.icons/mr2.xbm)^fg()\
+^fg(\#000000)^bg(\#A527C5)^ca()  ${exec uname -n}\
+^ca(1, $HOME/.xmonad/scripts/info-dzen.sh)^bg(\#A527C5)^i($HOME/.xmonad/.icons/user.xbm)^fg() ^ca() ${exec awk hostnamectl'{$1=$2="";sub(/^[ \t]+/, "")}NR==1'}\
+]=];
