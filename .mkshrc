@@ -1,0 +1,41 @@
+# umask
+umask 022
+
+# prompt
+export purple=$'\e[0;32m'
+export pink=$'\e[0;37m'
+export NC=$'\e[0m'
+
+prom() {
+	pwd|sed -r "s/.*\///; s,$USER,~,"
+}
+
+PS1='$purple$(prom)$pink $ $NC'
+
+# history
+HISTSIZE=3000
+HISTFILE=~/.mksh-history
+
+# clear the screen
+bind ^L=clear-screen
+
+# paths
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/bin:$HOME/.bin
+MANPATH=/usr/share/doc:/usr/share/man
+HARSET=UTF-8
+SHELL=/bin/mksh
+PAGER=less
+EDITOR=vim
+BROWSERCLI=lynx
+BROWSER=palemoon
+export LD_LIBRARY_PATH=/opt/cuda/lib64:$LD_LIBRARY_PATH
+export LS_OPTIONS='--color=auto'
+
+# colorful man pages
+export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
+export LESS_TERMCAP_md=$'\e[1;32m'     # begin blink
+export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
+export LESS_TERMCAP_so=$'\e[01;35m'    # begin reverse video
+export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
+export LESS_TERMCAP_us=$'\e[4;33m'     # begin underline
+export LESS_TERMCAP_ue=$'\e[0m' # reset underline
